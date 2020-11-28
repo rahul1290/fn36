@@ -20,9 +20,9 @@ class _HomeState extends State<Home> {
     super.initState();
   }
 
-  get_menus() {
+  get_menus(){
     http.get(global.baseUrl + 'news_ctrl/menus/').then((response) {
-      print("Response status: ${response.statusCode}");
+      //print("Response status: ${response.statusCode}");
       setState(() {
         menus = response.body;
       });
@@ -33,7 +33,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('News'),
+        title: Text(global.appTitle),
       ),
       backgroundColor: Colors.deepPurpleAccent,
       body: Container(
@@ -41,17 +41,12 @@ class _HomeState extends State<Home> {
           padding: EdgeInsets.symmetric(vertical: 2),
           height: 32.0,
           color: Colors.deepPurple,
-          child:
-          ListView(
-              scrollDirection: Axis.horizontal,
-              children: <Widget>[
-                containeritem(),
-                containeritem(),
-                containeritem(),
-                containeritem(),
-                containeritem(),
-                containeritem(),
-          ]),
+          child: Column(
+            children: <Widget>[
+
+            ],
+          ),
+          
 
       ),
     );
@@ -60,12 +55,14 @@ class _HomeState extends State<Home> {
 
 
 class containeritem extends StatelessWidget {
+  containeritem({ this.menuText});
+  final String menuText;
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(left: 2),
       child: RaisedButton(
-        child: Text('Home123'),
+        child: Text(menuText),
         onPressed: () => {
           //etMenus()
         },
